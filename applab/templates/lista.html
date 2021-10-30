@@ -1,0 +1,57 @@
+{% extends 'side-bar.html' %}
+
+{% block 'cuerpo_html' %}
+<a class="btn btn-primary" href="{% url 'nuevo_admin' %}">
+    Nuevo administrador
+</a><br><br>
+<table id="tabla" style="width:100%;">
+</table>
+<script>
+    $("#tabla").DataTable({
+            ajax: {
+                url: "{% url 'administradores' %}",
+                type: "GET",
+                dataType: "json",
+                dataSrc: "",
+            },
+            columns: [{
+                title: "ID",
+                data: "id",
+                className: "dt-center",
+            }, {
+                title: "Nombre",
+                data: "nombre",
+                className: "dt-center",
+            }, {
+                title: "Apellido",
+                data: "apellido",
+                className: "dt-center",
+            }, {
+                title: "Correo electrónico",
+                data: "correo",
+                className: "dt-center",
+            }, {
+                title: "Área",
+                data: "area",
+                className: "dt-center",
+            }, {
+                title: "Estatus",
+                data: "estatus",
+                className: "dt-center",
+            }, {
+                title: "Acciones",
+                orderable: false,
+                data: "id",
+                className: "dt-center",
+                render: function(id, type, data) {
+                    var botones = `<a class="btn btn-link" href='/administrador/${id}/editar'><i class='fa fa-pen'></i> Editar</a>`;
+                    botones += `<a class="btn btn-link" href='/administrador/${id}/eliminar'><i class='fa fa-trash'></i> Eliminar</a>`;
+                    return '<div class="btn-group">' + botones + '</div>';
+                }
+            }],
+            language: {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+            }
+        });
+</script>
+{% endblock %}

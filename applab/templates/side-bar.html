@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>{{titulo}}</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="{% static 'stisla/assets/modules/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'stisla/assets/modules/fontawesome/css/all.min.css' %}">
+
+    <!-- Plugins -->
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'stisla/assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'stisla/assets/css/components.css' %}">
+  </head>
+
+  <body>
+    <script src="{% static 'stisla/assets/modules/jquery.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'datatables.css' %}">
+    <script type="text/javascript" charset="utf8" src="{% static 'datatables.js' %}"></script>
+    <div id="app">
+      <div class="main-wrapper">
+        <div class="navbar-bg"></div>
+        <nav class="navbar navbar-expand-lg main-navbar">
+          <form class="form-inline mr-auto">
+            <ul class="navbar-nav mr-3">
+              <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+              <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+            </ul>
+          </form>
+          <ul class="navbar-nav navbar-right">
+            <li><a href="#" class="nav-link nav-link-lg nav-link-user">
+              <div class="d-sm-none d-lg-inline-block">Hola, {{request.user.get_full_name}}</div></a>
+            </li>
+          </ul>
+        </nav>
+        <div class="main-sidebar">
+          <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
+              <a href="{% url 'inicio' %}">AppLab</a>
+            </div>
+            <div class="sidebar-brand sidebar-brand-sm">
+              <a href="{% url 'inicio' %}">AL</a>
+            </div>
+            <ul class="sidebar-menu">
+              <li class="menu-header">Catalogos</li>
+              <li class="dropdown">
+                <a href="{% url 'lista_admin' %}"><i class="fa fa-user"></i><span>Administradores</span></a>
+              </li>
+            </ul>
+
+            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+              <a href="{% url 'logout' %}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                  <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+              </a>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+          <section class="section">
+            <div class="section-header">
+              <h1>{{titulo}}</h1>
+            </div>
+
+            <div class="section-body">
+              <div class="card">
+                <div class="card-body">
+                  {% block 'cuerpo_html' %}
+                  {% endblock %}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <footer class="main-footer">
+        </footer>
+      </div>
+    </div>
+
+    <!-- General JS Scripts -->
+   
+    <script src="{% static 'stisla/assets/modules/popper.js' %}"></script>
+    <script src="{% static 'stisla/assets/modules/tooltip.js' %}"></script>
+    <script src="{% static 'stisla/assets/modules/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'stisla/assets/modules/nicescroll/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'stisla/assets/modules/moment.min.js' %}"></script>
+    <script src="{% static 'stisla/assets/js/stisla.js' %}"></script>
+    
+    <!-- Plugins -->
+
+    <!-- Page Specific JS File -->
+    
+    <!-- Template JS File -->
+    <script src="{% static 'stisla/assets/js/scripts.js' %}"></script>
+    <script src="{% static 'stisla/assets/js/custom.js' %}"></script>
+
+  </body>
+  </html>
